@@ -1,4 +1,4 @@
-# Webflow JS Starter
+# The King David School Webflow Site JS Starter
 
 This GitHub project provides a development workflow for JavaScript files in Webflow JS Starter.
 
@@ -31,7 +31,7 @@ The project will process and output the files mentioned in the `files` const of 
 1. The initial `entry.js` file needs to be made available via external server first for this system to work (in the `<head>` area of the site).
 
    ```html
-   <script src="https://cdn.jsdelivr.net/gh/igniteagency/{{repo}}/dist/prod/entry.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/igniteagency/kds-edu-webflow-site/dist/prod/entry.js"></script>
    ```
 
    For occasional localhost testing when editing `entry.js`, you'll have to manually include that script like following:

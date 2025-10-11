@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+While working with this project, use MCP connections for Webflow and Figma. The Webflow project to be used is "The King David School".
+
 ## Project Overview
 
 This is a Webflow JavaScript starter project where JavaScript/TypeScript is authored and managed separately from HTML/CSS (which remain in Webflow). Scripts are not bundled into a single file - each script is loaded individually per page as needed, with only `src/entry.ts` (built as `entry.js`) loaded globally. The system uses esbuild for building and serves scripts from either localhost during development or jsDelivr CDN in production.
@@ -119,7 +121,7 @@ document.addEventListener('scriptLoaded:library-name', (e) => {
 3. **Deploy**: Merge to `main` branch triggers GitHub Actions that:
    - Creates semver tag (patch by default, use `#major` or `#minor` in commit message for higher bumps)
    - Makes scripts available via jsDelivr CDN
-4. **CDN**: Scripts are served from `https://cdn.jsdelivr.net/gh/igniteagency/{{repo}}/dist/prod/`
+4. **CDN**: Scripts are served from `https://cdn.jsdelivr.net/gh/igniteagency/kds-edu-webflow-site/dist/prod/`
 
 ## Development Guidelines
 
