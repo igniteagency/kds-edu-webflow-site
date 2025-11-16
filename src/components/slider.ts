@@ -1,3 +1,5 @@
+import { SWIPER_LOADED_EVENT } from 'src/constants';
+
 /**
  * General Slider component
  * To create standalone sliders on the page, add swiper script and this component script to the page
@@ -52,6 +54,6 @@ class Slider {
   }
 }
 
-document.addEventListener('scriptLoaded:swiper', () => {
+document.addEventListener(SWIPER_LOADED_EVENT, () => {
   new Slider();
 });
