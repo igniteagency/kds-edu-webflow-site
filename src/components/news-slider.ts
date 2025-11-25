@@ -14,7 +14,21 @@ function initNewsSlider(componentEl: HTMLElement) {
     return;
   }
 
-  const paginationEl = componentEl.querySelector<HTMLElement>('.swiper-pagination');
+  const paginationEl = (Array.from(
+    componentEl.querySelectorAll<HTMLElement>('[data-slider-el="pagination"], .swiper-pagination')
+  ).find((el) => el.closest(COMPONENT_SELECTOR) === componentEl) || null) as HTMLElement | null;
+  const bulletClass = paginationEl?.getAttribute('data-bullet-class') || 'slider_pagination-bullet';
+  const bulletActiveClass =
+    paginationEl?.getAttribute('data-bullet-active-class') || 'is-active';
+  const paginationConfig = paginationEl
+    ? {
+        el: paginationEl,
+        clickable: true,
+        bulletClass,
+        bulletActiveClass,
+      }
+    : undefined;
+
   const nextEl = componentEl.querySelector<HTMLElement>('.swiper-button-next');
   const prevEl = componentEl.querySelector<HTMLElement>('.swiper-button-prev');
 
@@ -26,7 +40,7 @@ function initNewsSlider(componentEl: HTMLElement) {
     loop: true,
     loopAddBlankSlides: true,
     slidesPerView: 'auto',
-    spaceBetween: 32,
+    spaceBetween: 24,
     creativeEffect: {
       perspective: true,
       prev: {
@@ -40,18 +54,14 @@ function initNewsSlider(componentEl: HTMLElement) {
       },
       limitProgress: 8,
     },
-    pagination: paginationEl
-      ? {
-          el: paginationEl,
-          clickable: true,
-        }
-      : undefined,
-    navigation: nextEl && prevEl
-      ? {
-          nextEl,
-          prevEl,
-        }
-      : undefined,
+    pagination: paginationConfig,
+    navigation:
+      nextEl && prevEl
+        ? {
+            nextEl,
+            prevEl,
+          }
+        : undefined,
     a11y: {
       enabled: true,
     },
@@ -80,3 +90,8 @@ if (typeof Swiper !== 'undefined') {
 }
 
 document.addEventListener(SWIPER_LOADED_EVENT, initNewsSliders);
+
+// Ensure Swiper is present (mirrors slider.ts behaviour)
+window.loadScript('https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js', {
+  name: 'swiper',
+});

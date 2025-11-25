@@ -74,21 +74,6 @@ class Slider {
   }
 }
 
-function loadSwiperStylesheet() {
-  if (document.querySelector('link[data-swiper-css="true"]')) {
-    return;
-  }
-
-  const linkEl = document.createElement('link');
-  linkEl.rel = 'stylesheet';
-  linkEl.href = 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css';
-  linkEl.setAttribute('data-swiper-css', 'true');
-
-  document.head.appendChild(linkEl);
-}
-
-loadSwiperStylesheet();
-
 window.loadScript('https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js', {
   name: 'swiper',
 });

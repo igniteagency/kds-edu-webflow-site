@@ -14,9 +14,21 @@ function initHeroSlider(componentEl: HTMLElement) {
     return;
   }
 
-  const paginationEl =
-    componentEl.querySelector<HTMLElement>('[data-slider-el="pagination"]') ??
-    componentEl.querySelector<HTMLElement>('.swiper-pagination');
+  const paginationEl = (Array.from(
+    componentEl.querySelectorAll<HTMLElement>('[data-slider-el="pagination"], .swiper-pagination')
+  ).find((el) => el.closest(COMPONENT_SELECTOR) === componentEl) || null) as HTMLElement | null;
+  const bulletClass = paginationEl?.getAttribute('data-bullet-class') || 'slider_pagination-bullet';
+  const bulletActiveClass =
+    paginationEl?.getAttribute('data-bullet-active-class') || 'is-active';
+  const paginationConfig = paginationEl
+    ? {
+        el: paginationEl,
+        clickable: true,
+        bulletClass,
+        bulletActiveClass,
+      }
+    : undefined;
+
   const nextEl = componentEl.querySelector<HTMLElement>('.swiper-button-next');
   const prevEl = componentEl.querySelector<HTMLElement>('.swiper-button-prev');
 
@@ -34,12 +46,7 @@ function initHeroSlider(componentEl: HTMLElement) {
     fadeEffect: {
       crossFade: true,
     },
-    pagination: paginationEl
-      ? {
-          el: paginationEl,
-          clickable: true,
-        }
-      : undefined,
+    pagination: paginationConfig,
     navigation:
       nextEl && prevEl
         ? {
@@ -75,3 +82,8 @@ if (typeof Swiper !== 'undefined') {
 }
 
 document.addEventListener(SWIPER_LOADED_EVENT, initHeroSliders);
+
+// Ensure Swiper is present (mirrors slider.ts behaviour)
+window.loadScript('https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js', {
+  name: 'swiper',
+});
