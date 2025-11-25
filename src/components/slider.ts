@@ -9,6 +9,7 @@ class Slider {
   COMPONENT_SELECTOR = '[data-slider-el="component"]';
   NAV_PREV_BUTTON_SELECTOR = '[data-slider-el="nav-prev"]';
   NAV_NEXT_BUTTON_SELECTOR = '[data-slider-el="nav-next"]';
+  PAGINATION_SELECTOR = '[data-slider-el="pagination"], .swiper-pagination';
 
   swiperComponents: NodeListOf<HTMLElement> | [];
   swiper: Swiper | null;
@@ -38,10 +39,29 @@ class Slider {
             }
           : false;
 
+      // Optional pagination support (scoped)
+      const paginationEl = (Array.from(
+        swiperComponent.querySelectorAll(this.PAGINATION_SELECTOR)
+      ).find((el) => el.closest(this.COMPONENT_SELECTOR) === swiperComponent) ||
+        null) as HTMLElement | null;
+      const bulletClass =
+        paginationEl?.getAttribute('data-bullet-class') || 'slider_pagination-bullet';
+      const bulletActiveClass =
+        paginationEl?.getAttribute('data-bullet-active-class') || 'is-active';
+      const paginationConfig = paginationEl
+        ? {
+            el: paginationEl,
+            clickable: true,
+            bulletClass,
+            bulletActiveClass,
+          }
+        : false;
+
       this.swiper = new Swiper(swiperEl, {
         loop: false,
         spaceBetween: 24,
         slidesPerView: 'auto',
+        pagination: paginationConfig,
         navigation: navigationConfig,
         slideActiveClass: 'is-active',
         slidePrevClass: 'is-previous',
@@ -53,6 +73,21 @@ class Slider {
     });
   }
 }
+
+function loadSwiperStylesheet() {
+  if (document.querySelector('link[data-swiper-css="true"]')) {
+    return;
+  }
+
+  const linkEl = document.createElement('link');
+  linkEl.rel = 'stylesheet';
+  linkEl.href = 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css';
+  linkEl.setAttribute('data-swiper-css', 'true');
+
+  document.head.appendChild(linkEl);
+}
+
+loadSwiperStylesheet();
 
 window.loadScript('https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js', {
   name: 'swiper',
