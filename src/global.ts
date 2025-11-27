@@ -35,6 +35,7 @@ function initComponents() {
 function UIFunctions() {
   duplicateMarqueeList();
   animatedDetailsAccordions();
+  window.conditionalLoadScript('[data-el="counter"]', 'components/counter.js');
 }
 
 function webflowOverrides() {
