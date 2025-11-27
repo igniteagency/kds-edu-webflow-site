@@ -1,3 +1,4 @@
+import './entry';
 import { animatedDetailsAccordions } from '$components/accordions';
 import Dialog from '$components/dialog';
 import { setCurrentYear } from '$utils/current-year';
@@ -36,6 +37,7 @@ function UIFunctions() {
   duplicateMarqueeList();
   animatedDetailsAccordions();
   window.conditionalLoadScript('[data-el="counter"]', 'components/counter.js');
+  window.conditionalLoadScript('[data-slider-el="component"]', 'components/slider.js');
 }
 
 function webflowOverrides() {

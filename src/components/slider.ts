@@ -1,3 +1,5 @@
+import '../entry';
+
 /**
  * General Slider component
  * To create standalone sliders on the page, add swiper script and this component script to the page
