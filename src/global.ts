@@ -1,6 +1,8 @@
 import './entry';
 import { animatedDetailsAccordions } from '$components/accordions';
 import Dialog from '$components/dialog';
+import NavMenu from '$components/nav/menu';
+import { navbarScrollToggle } from '$components/nav/scroll';
 import { setCurrentYear } from '$utils/current-year';
 import '$utils/disable-webflow-scroll';
 import { disableWebflowAnchorSmoothScroll } from '$utils/disable-webflow-scroll';
@@ -30,10 +32,12 @@ window.Webflow?.push(() => {
 });
 
 function initComponents() {
+  new NavMenu();
   new Dialog();
 }
 
 function UIFunctions() {
+  navbarScrollToggle();
   duplicateMarqueeList();
   animatedDetailsAccordions();
   window.conditionalLoadScript('[data-el="counter"]', 'components/counter.js');
