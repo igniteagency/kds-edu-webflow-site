@@ -128,11 +128,17 @@ class SwiperSlider {
       const instance = new Swiper(swiperEl, {
         loop,
         spaceBetween: gap,
-        slidesPerView: Number.isNaN(slidesPerView as number)
-          ? 'auto'
-          : (slidesPerView as number | 'auto'),
+        slidesPerView:
+          effect === 'fade'
+            ? 1
+            : Number.isNaN(slidesPerView as number)
+            ? 'auto'
+            : (slidesPerView as number | 'auto'),
         speed: 1000,
         effect,
+        fadeEffect: {
+          //crossFade: true,
+        },
         coverflowEffect: {
           rotate: 25,
           stretch: 0,
@@ -141,9 +147,9 @@ class SwiperSlider {
           slideShadows: true,
         },
         creativeEffect: {
-          limitProgress: 2,
+          limitProgress: 3,
           prev: {
-            translate: ['-10%', 0, 0],
+            //translate: ['-10%', 0, 0],
             scale: 0.9,
             origin: 'center center',
             opacity: 0.8,
@@ -152,7 +158,7 @@ class SwiperSlider {
             translate: ['100%', 0, 0],
           },
         },
-        centeredSlides,
+        //centeredSlides,
         watchSlidesProgress: true,
         autoplay: {
           delay: 10000,
