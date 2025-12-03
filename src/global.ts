@@ -10,6 +10,7 @@ import handleExternalLinks from '$utils/external-link';
 import addMainElementId from '$utils/main-element-id';
 import { duplicateMarqueeList } from '$utils/marquee-list';
 import { addSafariBrowserClass } from '$utils/safari-detection';
+import { prefillFormFields } from '$utils/prefill-form-fields';
 
 window.Webflow = window.Webflow || [];
 window.Webflow?.push(() => {
@@ -42,6 +43,7 @@ function UIFunctions() {
   navbarScrollToggle();
   duplicateMarqueeList();
   animatedDetailsAccordions();
+  prefillFormFields();
   window.conditionalLoadScript('[data-el="counter"]', 'components/counter.js');
   window.conditionalLoadScript('[data-slider-el="component"]', 'components/slider.js');
 }
