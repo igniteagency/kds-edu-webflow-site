@@ -155,7 +155,7 @@ class SwiperSlider {
             opacity: 0.8,
           },
           next: {
-            translate: ['100%', 0, 0],
+            translate: ['100%', 0, 1],
           },
         },
         //centeredSlides,
