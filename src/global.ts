@@ -3,6 +3,7 @@ import { animatedDetailsAccordions } from '$components/accordions';
 import Dialog from '$components/dialog';
 import NavMenu from '$components/nav/menu';
 import { navbarScrollToggle } from '$components/nav/scroll';
+import { initCursorFollow } from '$utils/cursor-follow';
 import { setCurrentYear } from '$utils/current-year';
 import '$utils/disable-webflow-scroll';
 import { disableWebflowAnchorSmoothScroll } from '$utils/disable-webflow-scroll';
@@ -37,6 +38,7 @@ function initComponents() {
 }
 
 function UIFunctions() {
+  initCursorFollow();
   navbarScrollToggle();
   duplicateMarqueeList();
   animatedDetailsAccordions();
