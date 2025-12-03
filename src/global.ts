@@ -9,6 +9,7 @@ import { disableWebflowAnchorSmoothScroll } from '$utils/disable-webflow-scroll'
 import handleExternalLinks from '$utils/external-link';
 import addMainElementId from '$utils/main-element-id';
 import { duplicateMarqueeList } from '$utils/marquee-list';
+import { addSafariBrowserClass } from '$utils/safari-detection';
 
 window.Webflow = window.Webflow || [];
 window.Webflow?.push(() => {
@@ -16,6 +17,8 @@ window.Webflow?.push(() => {
     window.WF_IX = window.Webflow.require('ix3');
     console.debug('Webflow IX3 globalised:', window.WF_IX);
   }, 100);
+
+  addSafariBrowserClass();
 
   // Set current year on respective elements
   setCurrentYear();
