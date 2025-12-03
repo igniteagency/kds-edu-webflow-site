@@ -132,8 +132,8 @@ class SwiperSlider {
           effect === 'fade'
             ? 1
             : Number.isNaN(slidesPerView as number)
-            ? 'auto'
-            : (slidesPerView as number | 'auto'),
+              ? 'auto'
+              : (slidesPerView as number | 'auto'),
         speed: 1000,
         effect,
         fadeEffect: {
