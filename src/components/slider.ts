@@ -176,9 +176,7 @@ class SwiperSlider {
         // Optional progress CSS var update (no-op if not used)
         on: {
           autoplayTimeLeft: (_swiper: any, _time: number, progress: number) => {
-            requestAnimationFrame(() => {
-              swiperComponent.style.setProperty('--progress', String(1 - progress));
-            });
+            swiperComponent.style.setProperty('--progress', (1 - progress).toFixed(4));
           },
         },
         breakpoints: {
