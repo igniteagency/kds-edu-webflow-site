@@ -132,8 +132,8 @@ class SwiperSlider {
           effect === 'fade'
             ? 1
             : Number.isNaN(slidesPerView as number)
-            ? 'auto'
-            : (slidesPerView as number | 'auto'),
+              ? 'auto'
+              : (slidesPerView as number | 'auto'),
         speed: 1000,
         effect,
         fadeEffect: {
@@ -149,13 +149,13 @@ class SwiperSlider {
         creativeEffect: {
           limitProgress: 3,
           prev: {
-            //translate: ['-10%', 0, 0],
+            // translate: ['-10%', 0, 0],
             scale: 0.9,
             origin: 'center center',
             opacity: 0.8,
           },
           next: {
-            translate: ['100%', 0, 0],
+            translate: ['100%', 0, 1],
           },
         },
         //centeredSlides,
@@ -170,17 +170,13 @@ class SwiperSlider {
         slidePrevClass: 'is-previous',
         slideNextClass: 'is-next',
         // nested,
-        // Prevent passive event warnings on nested content
-        touchStartPreventDefault: false,
         a11y: {
           enabled: true,
         },
         // Optional progress CSS var update (no-op if not used)
         on: {
           autoplayTimeLeft: (_swiper: any, _time: number, progress: number) => {
-            requestAnimationFrame(() => {
-              swiperComponent.style.setProperty('--progress', String(1 - progress));
-            });
+            swiperComponent.style.setProperty('--progress', (1 - progress).toFixed(4));
           },
         },
         breakpoints: {
