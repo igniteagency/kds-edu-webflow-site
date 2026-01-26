@@ -149,13 +149,13 @@ class SwiperSlider {
         creativeEffect: {
           limitProgress: 3,
           prev: {
-            //translate: ['-10%', 0, 0],
+            // translate: ['-10%', 0, 0],
             scale: 0.9,
             origin: 'center center',
             opacity: 0.8,
           },
           next: {
-            translate: ['100%', 0, 1],
+            translate: ['calc(100% + 32px)', 0, 1],
           },
         },
         //centeredSlides,
