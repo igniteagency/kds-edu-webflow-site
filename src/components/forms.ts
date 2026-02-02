@@ -50,8 +50,9 @@ class RemoteForm {
   private loadIframe(): void {
     const iframe = document.createElement('iframe');
     iframe.setAttribute('target', '_parent');
-    iframe.style.cssText = 'margin: 10px; width: 100%; height: 1950px; border: 0';
+    iframe.style.cssText = 'margin: 10px; width: 100%; height: 1000px; border: 0';
     iframe.setAttribute('frameBorder', '0');
+    iframe.setAttribute('loading', 'lazy');
     iframe.src = this.iframeUrl;
 
     this.iframeEmbedEl?.appendChild(iframe);
@@ -63,4 +64,6 @@ class RemoteForm {
   }
 }
 
-RemoteForm.initAll();
+window.addEventListener('load', () => {
+  RemoteForm.initAll();
+});
